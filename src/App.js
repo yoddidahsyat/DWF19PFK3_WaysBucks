@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import Content from './Components/Content';
+import ListData from './Components/ListData';
 
 // CLASS COMPONENT
 // class App extends Component{
@@ -26,6 +27,7 @@ function App() {
     <div className="App">
       <Header/>
       <Content/>
+      <ListData/>
     </div>
   )
 }

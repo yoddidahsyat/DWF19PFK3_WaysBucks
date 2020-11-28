@@ -15,6 +15,8 @@ function Content() {
     return(
         <div className="App-content">
             <p>This is Content with Functional Component</p>
+
+            <button onClick={() => (alert("Hello World!"))}>Hit me!</button>
         </div>
     )
 }
