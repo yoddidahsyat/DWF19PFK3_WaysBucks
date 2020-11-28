@@ -3,7 +3,7 @@ import List from './List';
 export default class ListData extends Component{
     render() {
         return(
-            <div>
+            <div className="App-content">
                 <List Data="Yoddi" />
                 <List Data="Dahsyat" />
                 <List Data="Bootcamp" />

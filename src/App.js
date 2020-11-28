@@ -4,6 +4,7 @@ import './App.css';
 import Header from './Components/Header';
 import Content from './Components/Content';
 import ListData from './Components/ListData';
+import Inc from './Components/Inc';
 
 // CLASS COMPONENT
 // class App extends Component{
@@ -28,6 +29,7 @@ function App() {
       <Header/>
       <Content/>
       <ListData/>
+      <Inc />
     </div>
   )
 }
