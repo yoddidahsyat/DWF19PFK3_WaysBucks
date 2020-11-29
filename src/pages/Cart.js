@@ -1,5 +1,10 @@
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+
 const Cart = () => {
-    return <div>ini adalah cart.</div>
+    const [hari] = useContext(AppContext);
+
+    return <div>ini adalah cart di hari: {hari}.</div>
 };
 
 export default Cart;

@@ -1,5 +1,9 @@
+import {useContext} from 'react';
+import {AppContext} from '../context/AppContext';
+
 const Home = () => {
-    return <div>ini adalah Home.</div>
+    const [hari] = useContext(AppContext);
+    return <div>ini adalah hari: {hari}.</div>
 };
 
 export default Home;
