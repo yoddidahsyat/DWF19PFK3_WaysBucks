@@ -1,37 +1,27 @@
-// CLASS COMPONENT
-import React, { Component } from 'react';
-import './App.css';
-import Header from './Components/Header';
-import Content from './Components/Content';
-import ListData from './Components/ListData';
-import Inc from './Components/Inc';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-// CLASS COMPONENT
-// class App extends Component{
-//   render(){
-//     return (
-//       <div className="App">
-//         <Header/>
-//         <Content/>
-//       </div>
-//     )
-//   }
-// }
+// components
+import Header from './components/Navbar';
 
-// export default App;
+// pages
+import Home from './pages/Home';
+import Product from './pages/Product';
+import Cart from './pages/Cart';
+import NotFound from './pages/NotFound';
 
-
-// FUNCTIONAL COMPONENT
-
-function App() {
+const App = () => {
   return (
-    <div className="App">
+    <Router>
       <Header/>
-      <Content/>
-      <ListData/>
-      <Inc />
-    </div>
-  )
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/cart" component={Cart} />
+        <Route exact path="/product" component={Product} />
+        <Route component={NotFound} />
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;
