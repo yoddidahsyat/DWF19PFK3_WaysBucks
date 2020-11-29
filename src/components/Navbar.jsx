@@ -1,12 +1,12 @@
-import {Navbar, Nav, NavDropdown, Button } from 'react-bootstrap';
+import {Navbar, Nav, NavDropdown, Button, Container } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
 const Header = () => {
 
     return (
-        <div>
+        <div className="mb-3">
             <Navbar bg="white" expand="lg">
-                <Navbar.Brand as={Link} to="/">WaysBucks</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/"><img src="/img/logo/WaysBucks.svg"></img></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
