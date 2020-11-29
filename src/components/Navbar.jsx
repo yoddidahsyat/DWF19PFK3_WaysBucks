@@ -2,14 +2,15 @@ import {Navbar, Nav, NavDropdown, Button } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
 const Header = () => {
+
     return (
         <div>
             <Navbar bg="white" expand="lg">
-                <Navbar.Brand href="/">WaysBucks</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">WaysBucks</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                        <Button variant="outline-danger" size="sm" className="mr-3 pl-5 pr-5">Login</Button>
+                        <Button as={Link} to="/login" variant="outline-danger" size="sm" className="mr-3 pl-5 pr-5">Login</Button>
                         <Button variant="danger" size="sm" className="pl-5 pr-5">Register</Button>
                         {/* <Nav.Link as={Link} to="/cart">Cart</Nav.Link>
                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
