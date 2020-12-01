@@ -1,7 +1,13 @@
-import {Navbar, Nav, NavDropdown, Button, Container } from 'react-bootstrap';
+import {useContext} from 'react';
+import {AppContext} from '../context/AppContext';
+import {Navbar, Nav} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import UserHead from './header/UserHead';
+import GuestHead from './header/GuestHead';
 
-const Header = () => {
+function Header() {
+    
+    const [state] = useContext(AppContext);
 
     return (
         <div className="mb-3">
@@ -10,15 +16,7 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                        <Button as={Link} to="/login" variant="outline-danger" size="sm" className="mr-3 pl-5 pr-5">Login</Button>
-                        <Button variant="danger" size="sm" className="pl-5 pr-5">Register</Button>
-                        {/* <Nav.Link as={Link} to="/cart">Cart</Nav.Link>
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Add Product</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Add Topping</NavDropdown.Item>
-                            <NavDropdown.Divider/>
-                            <NavDropdown.Item href="#action/3.3">Log Out</NavDropdown.Item>
-                        </NavDropdown> */}
+                        { state.isLogin ? <UserHead/> : <GuestHead/> }
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
