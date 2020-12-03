@@ -1,9 +1,10 @@
-import {useContext} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useContext,} from 'react';
+import {useHistory, Link} from 'react-router-dom';
 import {AppContext} from '../context/AppContext';
-import {Modal, Button, Form, FormGroup} from 'react-bootstrap';
+import {Modal, Form} from 'react-bootstrap';
+import ButtonRed from '../components/ButtonRed';
 
-const Login = (props) => {
+function Login(props) {
 
     const [state, dispatch] = useContext(AppContext);
     const router = useHistory();
@@ -27,13 +28,13 @@ const Login = (props) => {
                         <Form.Group>
                             <Form.Control type="password" placeholder="Password"></Form.Control>
                         </Form.Group>
-                            <Button onClick={handleLogin} className="btn-sm btn-danger" block>Login</Button>
+                            <ButtonRed title="Login" onClick={handleLogin} block></ButtonRed>
                     </Form>
+                    <p className="text-center mt-3">Already have an account? Click <Link onClick={() => {props.onHide(); props.register()}} className="text-reset font-weight-bold">Here</Link></p>
                 </Modal.Body>
             </Modal>
         </div>
     );
-
 };
 
 export default Login;

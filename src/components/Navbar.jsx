@@ -2,8 +2,8 @@ import {useContext} from 'react';
 import {AppContext} from '../context/AppContext';
 import {Navbar, Nav} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import UserHead from './header/UserHead';
-import GuestHead from './header/GuestHead';
+import UserHead from './navs/UserNav';
+import GuestHead from './navs/GuestNav';
 
 function Header() {
     

@@ -19,6 +19,11 @@ const reducer = (state, action) => {
                 ...state,
                 isLogin: false
             }
+        case "REGISTER":
+            return {
+                ...state,
+                isLogin: true
+            }
         default:
             throw new Error();
     }
