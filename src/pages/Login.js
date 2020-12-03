@@ -1,8 +1,7 @@
 import {useContext,} from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import {AppContext} from '../context/AppContext';
-import {Modal, Form} from 'react-bootstrap';
-import ButtonRed from '../components/ButtonRed';
+import {Modal, Form, Button} from 'react-bootstrap';
 
 function Login(props) {
 
@@ -28,7 +27,7 @@ function Login(props) {
                         <Form.Group>
                             <Form.Control type="password" placeholder="Password"></Form.Control>
                         </Form.Group>
-                            <ButtonRed title="Login" onClick={handleLogin} block></ButtonRed>
+                            <Button variant="red" onClick={handleLogin} block><strong>Login</strong></Button>
                     </Form>
                     <p className="text-center mt-3">Already have an account? Click <Link onClick={() => {props.onHide(); props.register()}} className="text-reset font-weight-bold">Here</Link></p>
                 </Modal.Body>

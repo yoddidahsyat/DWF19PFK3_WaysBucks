@@ -12,7 +12,7 @@ const Home = () => {
     <div className="container">
       <Jumbotron/>
       <div className="row mt-4 mb-4 ml-3">
-        <h3 className="text-danger">Let's Order</h3>
+        <h3 className="text-danger"><strong>Let's Order</strong></h3>
       </div>
       <div class="row">
         {Product.map((Product) => (

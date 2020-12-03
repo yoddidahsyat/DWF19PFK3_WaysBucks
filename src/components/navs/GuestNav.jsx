@@ -1,5 +1,6 @@
-import {Button, Nav} from 'react-bootstrap';
 import {useState} from 'react';
+import {Button, Nav} from 'react-bootstrap';
+import {} from '../../App.css';
 import Login from '../../pages/Login';
 import Register from '../../pages/Register';
 
@@ -17,8 +18,8 @@ function GuestButtons() {
     return (
         <div>
             <Nav>
-                <Button onClick={loginShow} variant="outline-danger" size="sm" className="mr-3 pl-5 pr-5">Login</Button>
-                <Button onClick={registerShow} variant="danger" size="sm" className="pl-5 pr-5">Register</Button>
+                <Button onClick={loginShow} variant="outline-red" size="standard" className="mr-3">Login</Button>
+                <Button onClick={registerShow} variant="red" size="standard">Register</Button>
                 <Login show={showLogin} register={registerShow} onHide={loginClose}/>
                 <Register show={showRegister} login={loginShow} onHide={registerClose}/>
             </Nav>

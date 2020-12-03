@@ -4,3 +4,29 @@
   border-radius: 10px;
   object-fit: contain;
 }
+
+.btn-red {
+  background-color: #BD0707;
+  color: white;
+}
+
+.btn-red:hover {
+  background-color: #860000;
+  color: white;
+}
+
+.btn-outline-red {
+  background-color: white;
+  color: #BD0707;
+  border-color: #BD0707;
+}
+
+.btn-outline-red:hover {
+  background-color: #BD0707;
+  color: white;
+}
+
+.btn-standard {
+  width: 150px;
+  padding: 5px;
+}

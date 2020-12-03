@@ -2,8 +2,8 @@ import {useContext} from 'react';
 import {AppContext} from '../context/AppContext';
 import {Navbar, Nav} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import UserHead from './navs/UserNav';
-import GuestHead from './navs/GuestNav';
+import UserNav from './navs/UserNav';
+import GuestNav from './navs/GuestNav';
 
 function Header() {
     
@@ -16,7 +16,7 @@ function Header() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                        { state.isLogin ? <UserHead/> : <GuestHead/> }
+                        { state.isLogin ? <UserNav/> : <GuestNav/> }
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

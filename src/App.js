@@ -4,7 +4,7 @@ import './App.css';
 import {AppContextProvider} from './context/AppContext';
 
 // components
-import Navbar from './components/Navbar';
+import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 
 // pages
@@ -17,7 +17,7 @@ const App = () => {
   return (
     <AppContextProvider>
       <Router>
-        <Navbar/>
+        <Header/>
         <Switch>
           <Route exact path="/" component={Home} />
           <PrivateRoute exact path="/cart" component={Cart} />
