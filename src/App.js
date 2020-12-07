@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Home from './pages/Home';
 import Product from './pages/Product';
 import Cart from './pages/Cart';
+import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 
 const App = () => {
@@ -21,7 +22,8 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <PrivateRoute exact path="/cart" component={Cart} />
-          <Route path="/product/:id" component={Product} />
+          <PrivateRoute exact path="/profile" component={Profile} />
+          <PrivateRoute path="/product/:id" component={Product} />
           <Route component={NotFound} />
         </Switch>
       </Router>

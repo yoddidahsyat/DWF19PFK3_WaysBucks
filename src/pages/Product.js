@@ -27,8 +27,8 @@ function Product() {
                     </div>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
-                    <div><h5 className="text-brown"><strong>Total</strong></h5></div>
-                    <div><h5 className="text-brown"><strong>Rp. 99.999</strong></h5></div>
+                    <h5 className="text-brown"><strong>Total</strong></h5>
+                    <h5 className="text-brown"><strong>Rp. 99.999</strong></h5>
                 </div>
                 <Button className="my-3" variant="red" block>Add to Cart</Button>
             </div>
