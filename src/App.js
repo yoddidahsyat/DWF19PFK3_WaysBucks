@@ -13,6 +13,9 @@ import Product from './pages/Product';
 import Cart from './pages/Cart';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
+import AddProduct from './pages/AddProduct';
+import AddTopping from './pages/AddTopping';
+import Transaction from './pages/Transaction';
 
 const App = () => {
   return (
@@ -24,6 +27,9 @@ const App = () => {
           <PrivateRoute exact path="/cart" component={Cart} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute path="/product/:id" component={Product} />
+          <Route exact path="/addproduct" component={AddProduct} />
+          <Route exact path="/addtopping" component={AddTopping} />
+          <Route exact path="/transaction" component={Transaction} />
           <Route component={NotFound} />
         </Switch>
       </Router>

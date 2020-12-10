@@ -30,7 +30,7 @@ function Register(props) {
                         <Form.Group>
                             <Form.Control type="text" placeholder="Full Name"></Form.Control>
                         </Form.Group>
-                            <Button title="Register" onClick={handleRegister} variant="red" block><strong>Register</strong></Button>
+                            <Button onClick={handleRegister} variant="red" block><strong>Register</strong></Button>
                     </Form>
                     <p className="text-center mt-3">Don't have an account? Click <Link onClick={() => {props.onHide(); props.login()}} className="text-reset font-weight-bold">Here</Link></p>
                 </Modal.Body>
