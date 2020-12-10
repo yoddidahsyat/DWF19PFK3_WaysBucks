@@ -6,7 +6,8 @@ function UserHead() {
         <div>
             <Nav>
                 <Nav.Link as={Link} to="/cart">Cart</Nav.Link>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                <NavDropdown title="Dropdown" menuAlign="right">
+                    <NavDropdown.Item href="#">Transactions</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.1">Add Product</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Add Topping</NavDropdown.Item>
                     <NavDropdown.Divider />
