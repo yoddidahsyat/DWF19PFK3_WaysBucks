@@ -3,42 +3,26 @@ import {createContext, useReducer} from 'react';
 export const AppContext = createContext();
 
 const initialState = {
-    isLogin: true,
+    isLogin: false,
     carts: []
 }
 
 const reducer = (state, action) => {
     switch (action.type) {
         case "ADD_CART":
-            // const isProductExisted = state.carts.filter(
-            //     (product) => product.id === action.payload.id
-            // );
-            // if (isProductExisted.length > 0) {
-            //     return {
-            //         ...state,
-            //         carts: state.carts.map(
-            //             (product) => product.id === action.payload.id ? {
-            //                 ...product,
-            //                 qty: product.qty + 1
-            //             } : product
-            //         )
-            //     }
-            // }
+            const addedCarts = [...state.carts];
+            addedCarts.push(action.payload);
             return {
                 ...state,
-                carts: [
-                    ...state.carts, {
-                        ...action.payload
-                    }
-                ]
+                carts: [...addedCarts]
             }
             
         case "REMOVE_CART":
+            const removedCarts = [...state.carts];
+            removedCarts.splice(action.payload, 1);
             return {
                 ...state,
-                carts: state.carts.filter(
-                    (product) => product.id !== action.payload.id
-                )
+                carts: [...removedCarts]
             }
 
         case "LOGIN":

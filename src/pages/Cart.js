@@ -8,7 +8,7 @@ const Cart = () => {
     const handleRemoveCart = (id) => {
         dispatch({
             type: "REMOVE_CART",
-            payload: { id }
+            payload: id
         });
     };
 
@@ -19,19 +19,19 @@ const Cart = () => {
                 <div className="col-md-7">
                     <p>Review Your Order</p>
                     <hr/>
-                    {state.carts.map((product) => (
+                    {state.carts.length < 1 ? "Your cart is empty." : state.carts.map((product, i) => (
                         <li className="list-group-item" key={product.id}>
                             <div className="d-flex justify-content-between align-items-center">
                                 <div className="d-flex align-items-center ">
                                     <img src={product.imgUrl} alt={product.name} className="img-fluid img-cart" />
                                     <div className="ml-3">
                                         <h5>{product.name}</h5>
-                                        <p>Topping: {product.qty}</p>
+                                        <p>Topping: {product.toppings.map(topping => topping.name).join(', ')}</p>
                                     </div>
                                 </div>
                                 <div>
                                     <p>Rp. 99000</p>
-                                    <button className="btn btn-danger btn-sm" onClick={() => handleRemoveCart(product.id)}>
+                                    <button className="btn btn-danger btn-sm" onClick={() => handleRemoveCart(i)}>
                                         Remove
                                     </button>
                                 </div>

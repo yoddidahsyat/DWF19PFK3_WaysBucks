@@ -16,7 +16,7 @@ function Product() {
             type: "ADD_CART",
             payload: {
                 ...product,
-                topping: selectedToppings
+                toppings: selectedToppings
             }
         })
     }

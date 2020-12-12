@@ -8,7 +8,14 @@ function UserHead() {
     const goToProfile = () => { router.push('/profile') }
     const goToCart = () => { router.push('/cart') }
 
-    const [state] = useContext(AppContext);
+    const [state, dispatch] = useContext(AppContext);
+
+    const handleLogout = () => {
+        dispatch({
+            type: "LOGOUT"
+        });
+        router.push('/');
+    };
 
     return (
         <div>
@@ -17,9 +24,9 @@ function UserHead() {
                 <Dropdown as={Nav.Item}>
                     <Dropdown.Toggle as={Nav.Link}>My Account</Dropdown.Toggle>
                     <Dropdown.Menu align="right">
-                        <Dropdown.Item onClick={goToProfile}>Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={goToProfile} >Profile</Dropdown.Item>
                         <Dropdown.Divider/>
-                        <Dropdown.Item>Logout</Dropdown.Item>
+                        <Dropdown.Item onClick={handleLogout} >Logout</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </Nav>
