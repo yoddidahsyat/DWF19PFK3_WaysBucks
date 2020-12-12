@@ -1,12 +1,17 @@
-import Card from 'react-bootstrap/Card';
-import {Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
 
-const ProductCard = ({product}) => {
+function ProductCard({product}) {
 
     const {id, name, price, imgUrl} = product;
 
+    const router = useHistory();
+    const goToProduct = () => {
+        router.push("/product/" + id);
+    }
+
     return (
-        <Card as={Link} to={'/product/' + id} className="col-md-3" border="light">
+        <Card role="button" onClick={goToProduct} className="col-md-3 card" border="light">
             <Card.Img className="Card-img" variant="top" src={imgUrl} alt={name}/>
             <Card.Body className="bg-light" >
                 <Card.Title className="text-red">{name}</Card.Title>

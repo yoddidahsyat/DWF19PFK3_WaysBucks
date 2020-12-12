@@ -48,9 +48,8 @@ function Profile() {
                                 <div className="col-md-3 text-center">
                                     <img src="/img/logo/WaysBucks.svg" alt="logo"></img>
                                     <img src="/img/profile/qr-code.png" alt="logo" className="img-qrcode mt-4"></img>
-                                    <div className="bg-success text-light rounded my-3">On The Way</div>
+                                    <div className="bg-info text-light rounded my-3">On The Way</div>
                                     <p>SubTotal :<br/><strong>Rp. 69.000</strong></p>
-                                    
                                 </div>
                             </div>
                         </li>
