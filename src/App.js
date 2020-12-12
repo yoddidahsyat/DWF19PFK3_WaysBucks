@@ -1,17 +1,21 @@
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import {AppContextProvider} from './context/AppContext';
 
 // components
-import Header from './components/Navbar';
+import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 
 // pages
 import Home from './pages/Home';
 import Product from './pages/Product';
 import Cart from './pages/Cart';
-import Login from './pages/Login';
+import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
+import AddProduct from './pages/AddProduct';
+import AddTopping from './pages/AddTopping';
+import Transaction from './pages/Transaction';
 
 const App = () => {
   return (
@@ -19,10 +23,13 @@ const App = () => {
       <Router>
         <Header/>
         <Switch>
-          <PrivateRoute exact path="/" component={Home} />
+          <Route exact path="/" component={Home} />
           <PrivateRoute exact path="/cart" component={Cart} />
-          <PrivateRoute exact path="/product" component={Product} />
-          <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/profile" component={Profile} />
+          <PrivateRoute path="/product/:id" component={Product} />
+          <Route exact path="/addproduct" component={AddProduct} />
+          <Route exact path="/addtopping" component={AddTopping} />
+          <Route exact path="/transaction" component={Transaction} />
           <Route component={NotFound} />
         </Switch>
       </Router>
