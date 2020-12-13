@@ -8,12 +8,11 @@ function Login(props) {
     const [state, dispatch] = useContext(AppContext);
     const router = useHistory();
 
-
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
-    
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };

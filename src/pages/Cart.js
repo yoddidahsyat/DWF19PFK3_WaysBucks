@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import {Form, Button} from 'react-bootstrap';
 
@@ -10,7 +10,25 @@ const Cart = () => {
             type: "REMOVE_CART",
             payload: id
         });
+    }
+
+    const [formData, setFormData] = useState({
+        paymentFile: '',
+        name: '',
+        email: '',
+        phone: '',
+        postCode: '',
+        address: ''
+    });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        alert(Object.entries(formData))
+    }
 
     return (
         <div className="container text-red">
@@ -57,23 +75,22 @@ const Cart = () => {
                             </div>
                         </div>
                         <div className="col-5">
-                            <Form>
-                                <Form.File placeholder="attach"></Form.File>
+                            <Form onSubmit={handleSubmit}>
+                                <Form.File name="paymentFile" value={formData.paymentFile} onChange={handleChange} placeholder="attach"></Form.File>
                             </Form>
                         </div>
                     </div>
                 </div>
                 <div className="col-md-5">
-                    <Form>
-                        <Form.Group><Form.Control placeholder="Name"></Form.Control></Form.Group>
-                        <Form.Group><Form.Control placeholder="Email"></Form.Control></Form.Group>
-                        <Form.Group><Form.Control placeholder="Phone"></Form.Control></Form.Group>
-                        <Form.Group><Form.Control placeholder="Post Code"></Form.Control></Form.Group>
-                        <Form.Group><Form.Control placeholder="Address" as="textarea" rows={3}></Form.Control></Form.Group>
-                        <Button variant="red" block>Pay</Button>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group><Form.Control name="name" value={formData.name} onChange={handleChange} type="text" placeholder="Name"></Form.Control></Form.Group>
+                        <Form.Group><Form.Control name="email" value={formData.email} onChange={handleChange} type="email" placeholder="Email"></Form.Control></Form.Group>
+                        <Form.Group><Form.Control name="phone" value={formData.phone} onChange={handleChange} type="text" placeholder="Phone"></Form.Control></Form.Group>
+                        <Form.Group><Form.Control name="postCode" value={formData.postCode} onChange={handleChange} type="text" placeholder="Post Code"></Form.Control></Form.Group>
+                        <Form.Group><Form.Control name="address" value={formData.address} onChange={handleChange} type="text" placeholder="Address" as="textarea" rows={3}></Form.Control></Form.Group>
+                        <Button type="submit" variant="red" block>Pay</Button>
                     </Form>
                 </div>
-                <div></div>
             </div>
         </div>
     )

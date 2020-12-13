@@ -21,6 +21,7 @@ function Product() {
         })
     }
 
+    // handle checkbox topping
     const [checkedToppings, setCheckedToppings] = useState({});
     const handleChange = (event) => {
         setCheckedToppings({
@@ -29,6 +30,7 @@ function Product() {
         })
     }
 
+    // get topping id berdasarkan checkbox yang dipilih
     const selectedToppingsId = [];
     for (var key in checkedToppings) {
         if (checkedToppings.hasOwnProperty(key)) {
@@ -36,6 +38,7 @@ function Product() {
         }
     }
 
+    // get topping berdasarkan topping id
     const selectedToppings = selectedToppingsId.map((selectedToppingId) =>
         Toppings.find((topping) => topping.id == selectedToppingId)
     )
