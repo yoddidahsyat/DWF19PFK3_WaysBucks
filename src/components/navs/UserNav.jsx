@@ -1,12 +1,12 @@
-import { useHistory } from 'react-router-dom';
-import { Nav, Dropdown } from 'react-bootstrap';
 import { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
+import { useHistory } from 'react-router-dom';
+import { Nav, Dropdown } from 'react-bootstrap';
 
 function UserHead() {
     const router = useHistory();
-    const goToProfile = () => { router.push('/profile') }
-    const goToCart = () => { router.push('/cart') }
+    const goToProfile = () => router.push('/profile');
+    const goToCart = () => router.push('/cart');
 
     const [state, dispatch] = useContext(AppContext);
 
@@ -15,7 +15,7 @@ function UserHead() {
             type: "LOGOUT"
         });
         router.push('/');
-    };
+    }
 
     return (
         <div>

@@ -5,7 +5,8 @@ import {AppContextProvider} from './context/AppContext';
 
 // components
 import Header from './components/Header';
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './components/routes/PrivateRoute';
+import AdminRoute from './components/routes/AdminRoute';
 
 // pages
 import Home from './pages/Home';
@@ -27,9 +28,9 @@ const App = () => {
           <PrivateRoute exact path="/cart" component={Cart} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute path="/product/:id" component={Product} />
-          <Route exact path="/addproduct" component={AddProduct} />
-          <Route exact path="/addtopping" component={AddTopping} />
-          <Route exact path="/transaction" component={Transaction} />
+          <AdminRoute exact path="/addproduct" component={AddProduct} />
+          <AdminRoute exact path="/addtopping" component={AddTopping} />
+          <AdminRoute exact path="/transaction" component={Transaction} />
           <Route component={NotFound} />
         </Switch>
       </Router>

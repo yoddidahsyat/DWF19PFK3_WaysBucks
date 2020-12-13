@@ -32,7 +32,7 @@ function Register(props) {
                         </Form.Group>
                             <Button onClick={handleRegister} variant="red" block><strong>Register</strong></Button>
                     </Form>
-                    <p className="text-center mt-3">Don't have an account? Click <Link onClick={() => {props.onHide(); props.login()}} className="text-reset font-weight-bold">Here</Link></p>
+                    <p className="text-center mt-3">Already have an account? <Link onClick={() => {props.onHide(); props.login()}} className="text-reset font-weight-bold">Login</Link></p>
                 </Modal.Body>
             </Modal>
         </div>

@@ -4,10 +4,25 @@ import {Navbar, Nav} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import UserNav from './navs/UserNav';
 import GuestNav from './navs/GuestNav';
+import AdminNav from './navs/AdminNav';
 
 function Header() {
     
     const [state] = useContext(AppContext);
+
+    const navButton = () => {
+        if (!state.isLogin) {
+            return <GuestNav/>
+        }
+        switch (state.user.role) {
+            case "admin":
+                return <AdminNav/>
+            case "user":
+                return <UserNav/>
+            default:
+                throw new Error();
+        }
+    }
 
     return (
         <div className="mb-3">
@@ -16,7 +31,7 @@ function Header() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                        { state.isLogin ? <UserNav/> : <GuestNav/> }
+                        {navButton()}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

@@ -1,0 +1,59 @@
+[
+    {
+        "id": 1,
+        "name": "Levi Ackerman",
+        "email": "levi@aot.com",
+        "password": "aot123",
+        "role": "user"
+    },
+    {
+        "id": 2,
+        "name": "Mikasa Ackerman",
+        "email": "mikasa@aot.com",
+        "password": "aot123",
+        "role": "user"
+    },
+    {
+        "id": 3,
+        "name": "Eren Jaeger",
+        "email": "eren@aot.com",
+        "password": "aot123",
+        "role": "user"
+    },
+    {
+        "id": 4,
+        "name": "Armin",
+        "email": "armin@aot.com",
+        "password": "aot123",
+        "role": "user"
+    },
+    {
+        "id": 5,
+        "name": "Annie Leonheart",
+        "email": "annie@aot.com",
+        "password": "aot123",
+        "role": "user"
+    },
+    {
+        "id": 6,
+        "name": "Kirito",
+        "email": "kirito@sao.com",
+        "password": "sao123",
+        "role": "admin"
+    },
+    {
+        "id": 7,
+        "name": "Asuna",
+        "email": "asuna@sao.com",
+        "password": "sao123",
+        "role": "admin"
+    },
+    {
+        "id": 8,
+        "name": "Alice",
+        "email": "alice@sao.com",
+        "password": "sao123",
+        "role": "admin"
+    }
+
+]
