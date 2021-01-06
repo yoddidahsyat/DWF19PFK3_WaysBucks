@@ -62,7 +62,10 @@ const reducer = (state, action) => {
         case "REGISTER":
             return {
                 ...state,
-                isLogin: true
+                isLogin: true,
+                user: {
+                    role: "user"
+                }
             }
         default:
             throw new Error();

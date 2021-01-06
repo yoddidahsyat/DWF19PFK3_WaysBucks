@@ -5,12 +5,12 @@ function Profile() {
                 <div className="col-lg-5 mb-3">
                     <h5 className="text-red mb-4"><strong>My Profile</strong></h5>
                     <div className="d-flex align-items-center">
-                        <img className="img-profile" src="/img/profile/captainlevi.png"/>
+                        <img className="img-profile" src="/img/profile/profile.jpg"/>
                         <div className="ml-3">
                             <strong className="text-brown">Full Name</strong>
-                            <p>Levi Ackerman</p>
+                            <p>Mohammad Yoddi Dahsyat</p>
                             <strong className="text-brown">Email</strong>
-                            <p>levi@aot.com</p>
+                            <p>yoddi.dahsyat@gmail.com</p>
                         </div>
                     </div>
                 </div>

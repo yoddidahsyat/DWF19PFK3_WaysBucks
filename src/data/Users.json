@@ -50,10 +50,17 @@
     },
     {
         "id": 8,
-        "name": "Alice",
-        "email": "alice@sao.com",
-        "password": "sao123",
+        "name": "Admin",
+        "email": "admin@gmail.com",
+        "password": "admin",
         "role": "admin"
+    },
+    {
+        "id": 9,
+        "name": "Mohammad Yoddi Dahsyat",
+        "email": "yoddi.dahsyat@gmail.com",
+        "password": "dahsyat",
+        "role": "user"
     }
 
 ]

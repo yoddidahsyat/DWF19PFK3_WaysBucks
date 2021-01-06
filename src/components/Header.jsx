@@ -1,7 +1,7 @@
-import {useContext} from 'react';
-import {AppContext} from '../context/AppContext';
-import {Navbar, Nav} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import { Navbar, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import UserNav from './navs/UserNav';
 import GuestNav from './navs/GuestNav';
 import AdminNav from './navs/AdminNav';
