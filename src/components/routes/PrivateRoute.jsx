@@ -12,6 +12,7 @@ const PrivateRoute = ({component: Component, ...rest}) => {
                 if (state.isLogin && state.user.role === "user") {
                     return <Component {...props}/>
                 }
+                alert('Please Login');
                 return <Redirect to="/" /> 
             }}
         />

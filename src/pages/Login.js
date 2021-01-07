@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import { Modal, Form, Button } from 'react-bootstrap';
+import { API, setAuthToken } from '../config/api';
 
 function Login(props) {
 
@@ -17,12 +18,39 @@ function Login(props) {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleLogin = (e) => {
+    const handleClick = () => {
+        props.onHide();
+        props.register()
+    }
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch({
-            type: "LOGIN",
-            payload: formData
-        });
+        try {
+            const body = JSON.stringify(formData);
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+
+            const response = await API.post("/auth/login", body, config);
+            // console.log(response);
+
+            setAuthToken(response.data.data.token);
+            // urutannya setAuthToken dulu baru dispatch gak boleh ketuker
+            dispatch({
+                type: "LOGIN",
+                payload: response.data.data,
+            });
+
+            router.push("/home");
+        } catch (err) {
+            console.log(err);
+            if(err.response.status === 400) {
+                alert(err.response.data.message);
+            }
+        }
         router.push('/');
     }
 
@@ -31,7 +59,7 @@ function Login(props) {
             <Modal {...props} size="sm" centered>
                 <Modal.Body>
                     <Modal.Title className="text-danger mb-3">Login</Modal.Title>
-                    <Form onSubmit={handleLogin} >
+                    <Form onSubmit={handleSubmit} >
                         <Form.Group>
                             <Form.Control
                                 name="email"
@@ -52,9 +80,9 @@ function Login(props) {
                                 required>
                             </Form.Control>
                         </Form.Group>
-                            <Button variant="red" type="submit" block><strong>Login</strong></Button>
+                            <Button type="submit" variant="red" block><strong>Login</strong></Button>
                     </Form>
-                    <p className="text-center mt-3">Don't have an account? <Link onClick={() => {props.onHide(); props.register()}} className="text-reset font-weight-bold">Register</Link></p>
+                    <p className="text-center mt-3">Don't have an account? <Link to='/' onClick={handleClick} className="text-reset font-weight-bold">Register</Link></p>
                 </Modal.Body>
             </Modal>
         </div>

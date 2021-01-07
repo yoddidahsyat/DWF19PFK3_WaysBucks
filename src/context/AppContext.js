@@ -1,25 +1,10 @@
 import {createContext, useReducer} from 'react';
-import Users from '../data/Users.json';
 
 export const AppContext = createContext();
 
 const initialState = {
     isLogin: false,
     carts: []
-}
-
-const auth = (form) => {
-    // cari data user di dalam users berdasarkan email dari form
-    const user = Users.find((user) => user.email === form.email);
-    // jika ada, cocokkan password
-    if (user) {
-        // jika password cocok return data user, jika tidak cocok return false
-        if (user.password === form.password) {
-            return user;
-        }
-    }
-    // jika tidak ada, return false
-    return false;
 }
 
 const reducer = (state, action) => {
@@ -31,7 +16,7 @@ const reducer = (state, action) => {
                 ...state,
                 carts: [...addedCarts]
             }
-            
+        
         case "REMOVE_CART":
             const newCarts = [...state.carts];
             newCarts.splice(action.payload, 1);
@@ -39,34 +24,59 @@ const reducer = (state, action) => {
                 ...state,
                 carts: [...newCarts]
             }
-
+        
         case "LOGIN":
-            const user = auth(action.payload);
-            if (!user) {
-                alert('Your email or password is invalid');
-                return {...state}
-            }
-            return {
-                ...state,
-                user,
-                isLogin: true
-            }
-
-        case "LOGOUT":
-            return {
-                ...state,
-                isLogin: false,
-                user: {}
-            }
-
-        case "REGISTER":
+            localStorage.setItem("token", action.payload.token);
             return {
                 ...state,
                 isLogin: true,
+                isLoading: false,
                 user: {
-                    role: "user"
+                    id: action.payload.id,
+                    name: action.payload.fullName,
+                    email: action.payload.email,
+                    role: action.payload.role
                 }
             }
+
+        case "USER_LOADED":
+            return {
+                ...state,
+                isLogin: true,
+                isLoading: false,
+                user: {
+                    id: action.payload.id,
+                    name: action.payload.fullName,
+                    email: action.payload.email,
+                    role: action.payload.role
+                }
+            }
+        
+        case "REGISTER":
+            localStorage.setItem("token", action.payload.token);
+            return {
+                ...state,
+                isLogin: true,
+                isLoading: false,
+                user: {
+                    id: action.payload.id,
+                    name: action.payload.fullName,
+                    email: action.payload.email,
+                    role: action.payload.role
+                }
+            }
+        
+        case "AUTH_ERROR":
+        case "LOGOUT":
+            localStorage.removeItem("token");
+
+            return {
+                ...state,
+                isLogin: false,
+                isLoading: false,
+                user: null
+            }
+        
         default:
             throw new Error();
     }

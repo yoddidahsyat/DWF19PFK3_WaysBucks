@@ -1,7 +1,9 @@
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import {AppContextProvider} from './context/AppContext';
+import { useContext, useEffect } from 'react';
+import { AppContext } from './context/AppContext';
+import { API, setAuthToken } from './config/api';
 
 // components
 import Header from './components/Header';
@@ -18,24 +20,49 @@ import AddProduct from './pages/AddProduct';
 import AddTopping from './pages/AddTopping';
 import Transaction from './pages/Transaction';
 
+
+if (localStorage.token) {
+    setAuthToken(localStorage.token);
+}
+
 const App = () => {
-  return (
-    <AppContextProvider>
-      <Router>
-        <Header/>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <PrivateRoute exact path="/cart" component={Cart} />
-          <PrivateRoute exact path="/profile" component={Profile} />
-          <PrivateRoute path="/product/:id" component={Product} />
-          <AdminRoute exact path="/addproduct" component={AddProduct} />
-          <AdminRoute exact path="/addtopping" component={AddTopping} />
-          <AdminRoute exact path="/transaction" component={Transaction} />
-          <Route component={NotFound} />
-        </Switch>
-      </Router>
-    </AppContextProvider>
-  );
+    const [state, dispatch] = useContext(AppContext);
+    
+    const loadUser = async () => {
+        try {
+            const response = await API('/auth');
+
+            dispatch({
+                type: "USER_LOADED",
+                payload: response.data.data,
+            });
+        } catch (err) {
+            dispatch({
+                type: "AUTH_ERROR"
+            });
+        }
+    };
+
+    useEffect(() => {
+        loadUser();
+    }, []);
+
+
+    return (
+        <Router>
+            <Header/>
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <PrivateRoute exact path="/cart" component={Cart} />
+                <PrivateRoute exact path="/profile" component={Profile} />
+                <PrivateRoute path="/product/:id" component={Product} />
+                <AdminRoute exact path="/addproduct" component={AddProduct} />
+                <AdminRoute exact path="/addtopping" component={AddTopping} />
+                <AdminRoute exact path="/transaction" component={Transaction} />
+                <Route component={NotFound} />
+            </Switch>
+        </Router>
+    );
 }
 
 export default App;
