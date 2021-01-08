@@ -1,4 +1,30 @@
+import { useEffect, useState } from 'react';
+import { API } from '../config/api';
+import Status from '../components/transactions/Status';
+import { Button } from 'react-bootstrap';
+import ViewPayment from '../components/transactions/ViewPayment';
+
 function Transaction() {
+
+    const [transactions, setTransactions] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const fetchTransactions = async () => {
+        try {
+            setLoading(true);
+            const response = await API('/transactions');
+            setTransactions(response.data.data.transactions);
+            setLoading(false);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        fetchTransactions();
+    }, [])
+
+
     return (
         <div className="container">
             <h3 className="text-red">Income Transaction</h3>
@@ -15,18 +41,22 @@ function Transaction() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>Levi Ackerman</td>
-                        <td>Shinganshina</td>
-                        <td>696969</td>
-                        <td>Rp. 69000</td>
-                        <td>On the way</td>
-                        <td className="d-flex justify-content-around">
-                            <button className="btn btn-sm btn-danger">Cancel</button>
-                            <button className="btn btn-sm btn-success">Approve</button>
-                        </td>
-                    </tr>
+                    {transactions.map((transaction, i) => 
+                        <tr>
+                            <td scope="row">{i + 1}</td>
+                            <td>{transaction.name}</td>
+                            <td>{transaction.address}</td>
+                            <td>{transaction.postCode}</td>
+                            <td>Rp. {transaction.income}</td>
+                            <td className="text-center"><Status status={transaction.status} /></td>
+                            <td>
+                                {transaction.status === "WAITING" ?
+                                    <ViewPayment id={transaction.id} image={transaction.attachment} />
+                                : <></>
+                                }
+                            </td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
         </div>

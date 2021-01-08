@@ -12,8 +12,10 @@ const PrivateRoute = ({component: Component, ...rest}) => {
             render = {(props) => {
                     if (state.isLogin && state.user.role === "admin") {
                         return <Component {...props}/>
+                    } else {
+                        alert('Access denied');
+                        return <Redirect to="/" /> 
                     }
-                    return <Redirect to="/" />
                 }}
         />
     );

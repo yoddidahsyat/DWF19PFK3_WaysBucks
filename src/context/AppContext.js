@@ -24,6 +24,12 @@ const reducer = (state, action) => {
                 ...state,
                 carts: [...newCarts]
             }
+
+        case "CLEAR_CART":
+            return {
+                ...state,
+                carts: []
+            }
         
         case "LOGIN":
             localStorage.setItem("token", action.payload.token);
@@ -33,7 +39,7 @@ const reducer = (state, action) => {
                 isLoading: false,
                 user: {
                     id: action.payload.id,
-                    name: action.payload.fullName,
+                    name: action.payload.name,
                     email: action.payload.email,
                     role: action.payload.role
                 }
@@ -46,7 +52,7 @@ const reducer = (state, action) => {
                 isLoading: false,
                 user: {
                     id: action.payload.id,
-                    name: action.payload.fullName,
+                    name: action.payload.name,
                     email: action.payload.email,
                     role: action.payload.role
                 }
@@ -60,7 +66,7 @@ const reducer = (state, action) => {
                 isLoading: false,
                 user: {
                     id: action.payload.id,
-                    name: action.payload.fullName,
+                    name: action.payload.name,
                     email: action.payload.email,
                     role: action.payload.role
                 }

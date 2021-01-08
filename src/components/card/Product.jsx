@@ -1,9 +1,10 @@
 import { Card } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
+import { uploadURL } from '../../config/api';
 
 function ProductCard({product}) {
 
-    const {id, name, price, imgUrl} = product;
+    const {id, name, price, image} = product;
 
     const router = useHistory();
     const goToProduct = () => {
@@ -11,8 +12,8 @@ function ProductCard({product}) {
     }
 
     return (
-        <Card role="button" onClick={goToProduct} className="col-md-3 card" border="light">
-            <Card.Img className="Card-img" variant="top" src={imgUrl} alt={name}/>
+        <Card role="button" onClick={goToProduct} className="col-md-3" border="light">
+            <Card.Img className="img-card" variant="top" src={uploadURL + image} alt={name}/>
             <Card.Body className="bg-light" >
                 <Card.Title className="text-red">{name}</Card.Title>
                 <Card.Text className="text-brown">Rp. {price}</Card.Text>

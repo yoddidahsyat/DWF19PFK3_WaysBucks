@@ -9,11 +9,12 @@ const PrivateRoute = ({component: Component, ...rest}) => {
         <Route
             {...rest}
             render = {(props) => {
-                if (state.isLogin && state.user.role === "user") {
+                if (state.isLogin) {
                     return <Component {...props}/>
+                } else {
+                    alert('Please Login');
+                    return <Redirect to="/" /> 
                 }
-                alert('Please Login');
-                return <Redirect to="/" /> 
             }}
         />
     );

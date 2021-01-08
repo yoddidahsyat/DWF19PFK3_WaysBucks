@@ -1,13 +1,13 @@
 /* ------------- image ------------- */
 
-.Card-img {
+.img-card {
   width: auto;
   height: 327px;
   border-radius: 10px;
   object-fit: cover;
 }
 
-.Product-img {
+.img-product {
   width: auto;
   height: 500px;
   border-radius: 20px;

@@ -1,13 +1,15 @@
-const ToppingCard = ({...props}) => {
+import { uploadURL } from '../../config/api';
 
-    const {id, name, price, imgUrl} = props.topping;
+const ToppingCard = ({...props}) => {
+    
+    const {id, name, image} = props.topping;
 
     return (
         <div className="col-md-3">
             <div className="card border-light">
                 <div className="card-body">
                     <label className="block-check">
-                        <img src={imgUrl} alt={name} className="img-topping" />
+                        <img src={uploadURL + image} alt={name} className="img-topping" />
                         <input 
                             type="checkbox"
                             id={id}
