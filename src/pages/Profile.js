@@ -45,53 +45,55 @@ function Profile() {
                 </div>
                 <div className="col-lg-7">
                     <h5 className="text-brown mb-4"><strong>My Transaction</strong></h5>
-                    <ul className="list-group rounded">
-                        { user.transactions.map(transaction => // transaction
-                            <li className="list-group-item list-group-item-danger mb-3" key={transaction.id} >
-                                <div className="row">
-                                    <div className="col-md-9">
-                                        <ul className="list-group"> {/*product in transaction*/}
-                                            {transaction.transactionProduct.map( transactionProduct => 
-                                                <li className="list-group-item list-group-item-danger" key={transactionProduct.id} >
-                                                    <div className="d-flex align-items-center ">
-                                                        <img src={uploadURL + transactionProduct.product.image} alt="product" />
-                                                        <div className="ml-3 text-red">
-                                                            <h5><strong>{transactionProduct.product.name}</strong></h5>
-                                                            {/* <p><strong>Saturday, </strong>5 March 2020</p> */}
-                                                            <p><span className="text-brown">Topping : </span>{transactionProduct.transactionTopping.map(transactionTopping => transactionTopping.topping.name).join(', ')}</p>
-                                                            <p><span className="text-brown">SubTotal : </span>Rp. {transactionProduct.transactionTopping.map(transactionTopping => transactionTopping.topping.price).reduce((a, b) => a + b, transactionProduct.product.price)}</p>
+                    {user.transactions.length < 1 ? <p className="text-secondary">There's no transaction yet</p> : 
+                        <ul className="list-group rounded">
+                            { user.transactions.map(transaction => // transaction
+                                <li className="list-group-item list-group-item-danger mb-3" key={transaction.id} >
+                                    <div className="row">
+                                        <div className="col-md-9">
+                                            <ul className="list-group"> {/*product in transaction*/}
+                                                {transaction.transactionProduct.map( transactionProduct => 
+                                                    <li className="list-group-item list-group-item-danger" key={transactionProduct.id} >
+                                                        <div className="d-flex align-items-center ">
+                                                            <img src={uploadURL + transactionProduct.product.image} alt="product" />
+                                                            <div className="ml-3 text-red">
+                                                                <h5><strong>{transactionProduct.product.name}</strong></h5>
+                                                                {/* <p><strong>Saturday, </strong>5 March 2020</p> */}
+                                                                <p><span className="text-brown">Topping : </span>{transactionProduct.transactionTopping.map(transactionTopping => transactionTopping.topping.name).join(', ')}</p>
+                                                                <p><span className="text-brown">SubTotal : </span>Rp. {transactionProduct.transactionTopping.map(transactionTopping => transactionTopping.topping.price).reduce((a, b) => a + b, transactionProduct.product.price)}</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                )}
+                                            </ul>
+                                        </div>
+                                        <div className="col-md-3 text-center">
+                                            <img src="/img/logo/WaysBucks.svg" alt="logo"></img>
+                                            <img src="/img/profile/qr-code.png" alt="logo" className="img-qrcode mt-4"></img>
+                                            <p>Total :<br/><strong>Rp. {transaction.income}</strong></p>
+                                            <div className="my-3">
+                                                <Status status={transaction.status} />
+                                                {transaction.status === "PENDING" ?
+                                                    <div className="my-5">
+                                                        <div>
+                                                            <UploadPayment id={transaction.id} />
+                                                        </div>
+                                                        <div className="mt-3">
+                                                            <Cancel id={transaction.id} />
                                                         </div>
                                                     </div>
-                                                </li>
-                                            )}
-                                        </ul>
-                                    </div>
-                                    <div className="col-md-3 text-center">
-                                        <img src="/img/logo/WaysBucks.svg" alt="logo"></img>
-                                        <img src="/img/profile/qr-code.png" alt="logo" className="img-qrcode mt-4"></img>
-                                        <p>Total :<br/><strong>Rp. {transaction.income}</strong></p>
-                                        <div className="my-3">
-                                            <Status status={transaction.status} />
-                                            {transaction.status === "PENDING" ?
-                                                <div className="my-5">
-                                                    <div>
-                                                        <UploadPayment id={transaction.id} />
+                                                : transaction.status === "PROCESSING" ?
+                                                    <div className="my-3">
+                                                        <Complete id={transaction.id} />
                                                     </div>
-                                                    <div className="mt-3">
-                                                        <Cancel id={transaction.id} />
-                                                    </div>
-                                                </div>
-                                            : transaction.status === "PROCESSING" ?
-                                                <div className="my-3">
-                                                    <Complete id={transaction.id} />
-                                                </div>
-                                            : <></>}
+                                                : <></>}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                        )}
-                    </ul>
+                                </li>
+                            )}
+                        </ul>
+                    }
                 </div>
             </div>
         </div>

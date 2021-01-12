@@ -88,7 +88,7 @@ function Product() {
             <div className="container">
                 <div className="row">
                     <div className="col-5">
-                        <img src={uploadURL + product.image} alt="product" className="img-product" />
+                        <img src={uploadURL + product.image} alt="product" className="img-product img-fluid" />
                     </div>
                     <div className="col-7">
                         <h2 className="text-red"><strong>{product.name}</strong></h2>
@@ -112,7 +112,6 @@ function Product() {
                         <button className="btn btn-red btn-block my-3" onClick={handleAddCart}>Add to Cart</button>
                     </div>
                 </div>
-                <pre>{JSON.stringify(state, null, 2)}</pre>
             </div>
         )
     );

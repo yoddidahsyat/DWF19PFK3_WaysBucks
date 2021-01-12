@@ -142,7 +142,6 @@ const Cart = () => {
                     </Form>
                 </div>
             </div>
-            <pre>{JSON.stringify(state, null, 2)}</pre>
         </div>
     )
 };
