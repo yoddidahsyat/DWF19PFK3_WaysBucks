@@ -25,8 +25,8 @@ function Approve({id}) {
     } 
 
     return (
-        <Button variant="success" size="sm" onClick={handleClick} >
-            Complete
+        <Button variant="primary" size="sm" onClick={handleClick} >
+            Approve
         </Button>
     );
 }

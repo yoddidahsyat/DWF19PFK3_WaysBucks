@@ -4,7 +4,7 @@ import { AppContext } from '../context/AppContext';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { API, setAuthToken } from '../config/api';
 
-function Login(props) {
+function Login({show, onHide, register}) {
 
     const [state, dispatch] = useContext(AppContext);
     const router = useHistory();
@@ -19,8 +19,8 @@ function Login(props) {
     };
 
     const handleClick = () => {
-        props.onHide();
-        props.register()
+        onHide();
+        register();
     }
 
     const handleSubmit = async (e) => {
@@ -56,7 +56,7 @@ function Login(props) {
 
     return (
         <div>
-            <Modal {...props} size="sm" centered>
+            <Modal show={show} onHide={onHide} size="sm" centered>
                 <Modal.Body>
                     <Modal.Title className="text-danger mb-3">Login</Modal.Title>
                     <Form onSubmit={handleSubmit} >

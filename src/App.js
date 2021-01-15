@@ -16,6 +16,8 @@ import Home from './pages/Home';
 import Product from './pages/Product';
 import Cart from './pages/Cart';
 import Profile from './pages/Profile';
+import React from 'react';
+import EditProfile from './pages/EditProfile';
 import NotFound from './pages/NotFound';
 import AddProduct from './pages/AddProduct';
 import AddTopping from './pages/AddTopping';
@@ -62,6 +64,7 @@ const App = () => {
                     <Route exact path="/" component={Home} />
                     <PrivateRoute exact path="/cart" component={Cart} />
                     <PrivateRoute exact path="/profile" component={Profile} />
+                    <PrivateRoute exact path="/edit-profile" component={EditProfile} />
                     <PrivateRoute path="/product/:id" component={Product} />
                     <AdminRoute exact path="/addproduct" component={AddProduct} />
                     <AdminRoute exact path="/addtopping" component={AddTopping} />

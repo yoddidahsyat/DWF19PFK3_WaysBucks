@@ -6,22 +6,22 @@ import Register from '../../pages/Register';
 
 function GuestButtons() {
     // useState untuk tombol login
-    const [showLogin, setShowLogin] = useState(false);
-    const loginClose = () => setShowLogin(false);
-    const loginShow = () => setShowLogin(true);
+    const [modalLogin, setModalLogin] = useState(false);
+    const closeLogin = () => setModalLogin(false);
+    const showLogin = () => setModalLogin(true);
 
     // useState untuk tombol register
-    const [showRegister, setShowRegister] = useState(false);
-    const registerClose = () => setShowRegister(false);
-    const registerShow = () => setShowRegister(true);
+    const [modalRegister, setModalRegister] = useState(false);
+    const closeRegister = () => setModalRegister(false);
+    const showRegister = () => setModalRegister(true);
 
     return (
         <div>
             <Nav>
-                <Button onClick={loginShow} variant="outline-red" size="standard" className="mr-3">Login</Button>
-                <Button onClick={registerShow} variant="red" size="standard">Register</Button>
-                <Login show={showLogin} register={registerShow} onHide={loginClose}/>
-                <Register show={showRegister} login={loginShow} onHide={registerClose}/>
+                <Button onClick={showLogin} variant="outline-red" size="standard" className="mr-3">Login</Button>
+                <Button onClick={showRegister} variant="red" size="standard">Register</Button>
+                <Login show={modalLogin} register={showRegister} onHide={closeLogin}/>
+                <Register show={modalRegister} login={showLogin} onHide={closeRegister}/>
             </Nav>
         </div>
     )

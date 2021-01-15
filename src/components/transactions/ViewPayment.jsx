@@ -40,7 +40,7 @@ function ViewPayment({id, image}) {
             <Modal show={modal} onHide={closeModal} >
                 <Modal.Body>
                     <img src={ uploadURL + image} alt="payment" className="img-fluid" />
-                    <div className="d-flex justify-content-center" >
+                    <div className="d-flex justify-content-around" >
                         <Cancel id={id} />
                         <Approve id={id} />
                     </div>
