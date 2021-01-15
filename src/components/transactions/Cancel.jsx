@@ -2,9 +2,8 @@ import { Button } from 'react-bootstrap';
 import { API } from '../../config/api';
 
 function Cancel({id}) {
-    
-    const handleClick = async () => {
-        
+
+    const cancel = async () => {
         const body = JSON.stringify({
             status: "CANCELED"
         })
@@ -22,10 +21,15 @@ function Cancel({id}) {
         } catch (err) {
             console.log(err.response.data.message);
         }
+    }
+    
+    const handleClick = () => {
+        // confirm("Are you sure? Transaction will be canceled.");
+        cancel();
     } 
 
     return (
-        <Button variant="danger" size="sm" onClick={handleClick} confirm="are you sure?" >
+        <Button variant="danger" size="sm" onClick={handleClick}>
             Cancel
         </Button>
     );

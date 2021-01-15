@@ -75,7 +75,6 @@ const Cart = () => {
 
         try {
             const response = await API.post("/transaction", body, config);
-            console.log(response);
 
             dispatch({
                 type: "CLEAR_CART"

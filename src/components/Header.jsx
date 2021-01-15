@@ -25,12 +25,12 @@ function Header() {
     }
 
     return (
-        <div className="mb-3">
-            <Navbar bg="white" expand="lg">
+        <div style={{marginBottom: 110}}>
+            <Navbar bg="white" expand="lg" fixed="top">
                 <Navbar.Brand as={Link} to="/"><img src="/img/logo/WaysBucks.svg" alt="logo" /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ml-auto">
+                    <Nav className="ml-auto d-flex align-items-center">
                         {navButton()}
                     </Nav>
                 </Navbar.Collapse>

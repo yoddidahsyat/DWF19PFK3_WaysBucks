@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { API } from '../config/api';
 import Status from '../components/transactions/Status';
-import { Button } from 'react-bootstrap';
 import ViewPayment from '../components/transactions/ViewPayment';
+import Loading from '../components/Loading';
 
 function Transaction() {
 
@@ -25,7 +25,7 @@ function Transaction() {
     }, [])
 
 
-    return (
+    return loading ? <Loading /> :
         <div className="container">
             <h3 className="text-red">Income Transaction</h3>
             <table className="table my-4">
@@ -43,7 +43,7 @@ function Transaction() {
                 <tbody>
                     {transactions.map((transaction, i) => 
                         <tr>
-                            <td scope="row">{i + 1}</td>
+                            <td>{i + 1}</td>
                             <td>{transaction.name}</td>
                             <td>{transaction.address}</td>
                             <td>{transaction.postCode}</td>
@@ -60,7 +60,6 @@ function Transaction() {
                 </tbody>
             </table>
         </div>
-    );
 }
 
 export default Transaction;

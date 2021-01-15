@@ -41,7 +41,8 @@ const reducer = (state, action) => {
                     id: action.payload.id,
                     name: action.payload.name,
                     email: action.payload.email,
-                    role: action.payload.role
+                    role: action.payload.role,
+                    avatar: action.payload.avatar
                 }
             }
 
@@ -54,7 +55,8 @@ const reducer = (state, action) => {
                     id: action.payload.id,
                     name: action.payload.name,
                     email: action.payload.email,
-                    role: action.payload.role
+                    role: action.payload.role,
+                    avatar: action.payload.avatar
                 }
             }
         
@@ -68,7 +70,8 @@ const reducer = (state, action) => {
                     id: action.payload.id,
                     name: action.payload.name,
                     email: action.payload.email,
-                    role: action.payload.role
+                    role: action.payload.role,
+                    avatar: action.payload.avatar
                 }
             }
         

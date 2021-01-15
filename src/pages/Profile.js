@@ -1,14 +1,21 @@
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { API, uploadURL } from '../config/api';
 import Loading from '../components/Loading';
 import Cancel from '../components/transactions/Cancel';
 import Complete from '../components/transactions/Complete';
 import Status from '../components/transactions/Status';
 import UploadPayment from '../components/transactions/UploadPayment';
-import { API, uploadURL } from '../config/api';
+import { Button } from 'react-bootstrap';
 
 function Profile() {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState({})
+    const router = useHistory();
+
+    const editProfile = () => {
+        router.push('/edit-profile');
+    }
 
     const fetchUser = async () => {
         try {
@@ -32,9 +39,11 @@ function Profile() {
         <div className="container">
             <div className="row">
                 <div className="col-lg-5 mb-3">
-                    <h5 className="text-red mb-4"><strong>My Profile</strong></h5>
+                    <h5 className="text-red"><strong>My Profile</strong></h5>
                     <div className="d-flex align-items-center">
-                        <img className="img-profile" src="/img/profile/profile.jpg" alt="profile" />
+                        { user.avatar ? <img src={uploadURL + user.avatar} alt="profile" className="img-profile" />
+                            : <img src="/img/profile/person-circle.png" alt="profile" className="img-profile" />
+                        }
                         <div className="ml-3">
                             <strong className="text-brown">Full Name</strong>
                             <p>{user.name}</p>
@@ -42,6 +51,7 @@ function Profile() {
                             <p>{user.email}</p>
                         </div>
                     </div>
+                    <Button variant="red" onClick={editProfile} >Edit Profile</Button>
                 </div>
                 <div className="col-lg-7">
                     <h5 className="text-brown mb-4"><strong>My Transaction</strong></h5>
