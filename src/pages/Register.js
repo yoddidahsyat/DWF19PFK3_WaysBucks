@@ -1,12 +1,14 @@
 import { useContext, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
-import { Modal, Form, Button } from 'react-bootstrap';
+import { Modal, Form, Button, Alert } from 'react-bootstrap';
 import { API, setAuthToken } from '../config/api';
+import Swal from 'sweetalert2';
 
 function Register({show, onHide, login}) {
 
     const [state, dispatch] = useContext(AppContext);
+    const [alert, setAlert] = useState(false);
     const router = useHistory();
 
     const [formData, setFormData] = useState({
@@ -44,13 +46,16 @@ function Register({show, onHide, login}) {
                 payload: response.data.data,
             });
 
-            alert(response.data.message);
+            Swal.fire(
+                'Success!',
+                response.data.message,
+                'success');
 
             router.push("/home");
         } catch (err) {
             console.log(err);
             if(err.response.status === 400) {
-                alert(err.response.data.message);
+                setAlert(true);
             }
         }
         router.push('/');
@@ -62,6 +67,7 @@ function Register({show, onHide, login}) {
             <Modal show={show} onHide={onHide} size="sm" centered>
                 <Modal.Body>
                     <Modal.Title className="text-danger mb-3">Register</Modal.Title>
+                    {alert && <Alert variant="danger">This email has already registered</Alert>}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group>
                             <Form.Control name="email" value={formData.value} onChange={handleChange} type="email" placeholder="Email"></Form.Control>

@@ -3,6 +3,7 @@ import { AppContext } from "../context/AppContext";
 import { Form, Button } from 'react-bootstrap';
 import { API, uploadURL } from "../config/api";
 import { useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Cart = () => {
     const [state, dispatch] = useContext(AppContext);
@@ -17,14 +18,18 @@ const Cart = () => {
     }
 
     // hitung Total cart
-    let total = carts.map(product => product.subTotal).reduce((a, b) => a + b, 0);
+    const [total, setTotal] = useState(0);
     useEffect(() => {
-        // console.log('useEffect', total);
+        setTotal(carts.map(product => product.subTotal).reduce((a, b) => a + b, 0));
+    }, [carts]);
+
+    // masukkan total ke dalam form data
+    useEffect(() => {
         setFormData({
             ...formData,
             income: total
         })
-    }, [carts])
+    }, [total])
     
 
     const [formData, setFormData] = useState({
@@ -48,23 +53,23 @@ const Cart = () => {
         e.preventDefault();
         
         // buat transactionProduct untuk body API
-        const transactionProduct = [];
-        carts.map(product => {
-            const transactionTopping = [];
-            product.toppings.map(topping =>
-                transactionTopping.push({
+        const transactionProducts = [];
+        carts.forEach(product => {
+            const transactionToppings = [];
+            product.toppings.forEach(topping =>
+                transactionToppings.push({
                     toppingId: topping.id
                 })
             );
-            transactionProduct.push({
+            transactionProducts.push({
                 productId: product.id,
-                transactionTopping
+                transactionToppings
             })
         })
 
         const body = JSON.stringify({
             ...formData,
-            transactionProduct
+            transactionProducts
         })
         
         const config = {
@@ -73,17 +78,25 @@ const Cart = () => {
             },
         };
 
+
         try {
-            const response = await API.post("/transaction", body, config);
+            await API.post("/transaction", body, config);
 
             dispatch({
                 type: "CLEAR_CART"
-            })
-            alert('Thankyou for your order, please confirm your payment on profile page');
+            });
+            await Swal.fire(
+                'Transaction created',
+                'Thankyou for your order, please confirm your payment on profile page',
+                'success'
+            );
             router.push('/profile');
         } catch (err) {
-            console.log(err);
-            alert(err.response.data.message);
+            Swal.fire(
+                'Error',
+                err.response.data.message,
+                'error'
+            );
         }
     }
 
@@ -97,15 +110,15 @@ const Cart = () => {
                     <hr/>
                     {carts.length < 1 ? <p>Your cart is empty.</p> : carts.map((product, i) => (
                         <li className="list-group-item" key={i}>
-                            <div className="d-flex justify-content-between align-items-center">
-                                <div className="d-flex align-items-center">
-                                    <img src={ uploadURL + product.image} alt={product.name} className="img-fluid img-cart" />
-                                    <div className="ml-3">
-                                        <h5>{product.name}</h5>
-                                        <span className="text-brown">Topping: </span>{product.toppings.map(topping => topping.name).join(', ')}
-                                    </div>
+                            <div className="row">
+                                <div className="col-2">
+                                    <img src={ uploadURL + product.image} alt={product.name} className="img-cart" />
                                 </div>
-                                <div>
+                                <div className="col-8">
+                                    <h5>{product.name}</h5>
+                                    <span className="text-brown">Topping: </span>{product.toppings.map(topping => topping.name).join(', ')}
+                                </div>
+                                <div className="col-2">
                                     <p>Rp. {product.subTotal}</p>
                                     <button className="btn btn-danger btn-sm" onClick={() => handleRemoveCart(i)}>
                                         Remove

@@ -5,6 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import { API, uploadURL } from '../config/api';
 import BoxUpload from '../components/BoxUpload';
 import { AppContext } from '../context/AppContext';
+import Swal from 'sweetalert2';
 
 function EditProfile() {
 
@@ -15,7 +16,7 @@ function EditProfile() {
 
     // ------------------------ GET DATA USER ------------------------- //
 
-    const [state] = useContext(AppContext);
+    const [state, dispatch] = useContext(AppContext);
     const { user } = state;
 
     // ---------------------- HANDLE FORM DATA ------------------------ //
@@ -65,8 +66,19 @@ function EditProfile() {
         };
 
         try {
-            await API.patch("/user", body, config);
-            alert("Your profile has succesfully updated");
+            const response = await API.patch("/user", body, config);
+            const user = response.data.data.user;
+            await Swal.fire(
+                'Success!',
+                "Your profile has succesfully updated",
+                'success'
+            );
+            dispatch({
+                type: "USER_LOADED",
+                payload: {
+                    ...user
+                }
+            })
             router.push('/profile');
         } catch (err) {
             console.log(err);
@@ -94,10 +106,10 @@ function EditProfile() {
         <div className="container">
             <div className="row text-red">
                 <div className="col-md-5">
-                    <div {...getRootProps({className: 'dropzone'})}>
+                    <div {...getRootProps({className: 'dropzone'})} className="text-center">
                         <input {...getInputProps()} />
-                        { user.avatar ? <img src={uploadURL + user.avatar} alt="avatar" className="img-fluid" role="button" /> 
-                        : files.length > 0 ? thumbs
+                        { files.length > 0 ? thumbs
+                        : user.avatar ? <img src={uploadURL + user.avatar} alt="avatar" className="img-fluid" role="button" /> 
                         : <BoxUpload type="Profile" />
                         }
                     </div>

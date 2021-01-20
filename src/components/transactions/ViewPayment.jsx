@@ -1,36 +1,15 @@
 import { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { uploadURL, API } from '../../config/api';
+import { uploadURL } from '../../config/api';
 import Approve from './Approve';
 import Cancel from './Cancel';
 
-function ViewPayment({id, image}) {
+function ViewPayment({id, image, refetch}) {
 
     // --------------------------- MODAL ----------------------------- //
     const [modal, setModal] = useState(false);
     const showModal = () => setModal(true);
     const closeModal = () => setModal(false);
-
-
-    const config = {
-        headers: {
-            "content-type": "application/json"
-        },
-    };
-
-
-    const handleReject = async () => {
-        const body = JSON.stringify({
-            status: "CANCELED"
-        })
-
-        try {
-            const response = await API.patch('/transaction/' + id, body, config);
-            alert(response.data.message);
-        } catch (err) {
-            alert(err.response.data.message);
-        }
-    }
 
     return (
         <>
@@ -40,9 +19,11 @@ function ViewPayment({id, image}) {
             <Modal show={modal} onHide={closeModal} >
                 <Modal.Body>
                     <img src={ uploadURL + image} alt="payment" className="img-fluid" />
+                    <h5 className="text-center my-3">Continue transaction?</h5>
                     <div className="d-flex justify-content-around" >
-                        <Cancel id={id} />
-                        <Approve id={id} />
+                        <Button variant="light" onClick={closeModal} >Back</Button>
+                        <Cancel id={id} refetch={refetch} />
+                        <Approve id={id} closemodal={closeModal} refetch={refetch} />
                     </div>
                 </Modal.Body>
             </Modal>

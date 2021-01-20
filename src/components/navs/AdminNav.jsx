@@ -8,7 +8,6 @@ function UserHead() {
     const goToTransaction = () => { router.push('/transaction') };
     const goToAddProduct = () => { router.push('/addproduct') };
     const goToAddTopping = () => { router.push('/addtopping') };
-    const goToCart = () => { router.push('/cart') };
     const [state, dispatch] = useContext(AppContext);
     
     const handleLogout = () => {

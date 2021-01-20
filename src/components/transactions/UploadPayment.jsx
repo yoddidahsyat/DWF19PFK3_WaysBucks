@@ -4,8 +4,9 @@ import BoxUpload from "../BoxUpload";
 import { useDropzone } from 'react-dropzone';
 import { Form } from "react-bootstrap";
 import { API } from "../../config/api";
+import Swal from 'sweetalert2';
 
-function UploadPayment({id}) {
+function UploadPayment({id, refetch}) {
 
     // --------------------------- MODAL ----------------------------- //
     const [modal, setModal] = useState(false);
@@ -48,12 +49,15 @@ function UploadPayment({id}) {
         };
 
         try {
-            const response = await API.patch("/transaction/payment/" + id, body, config);
-            console.log(response);
-            alert("Thankyou, please wait and refresh your page while we process your order");
+            await API.patch("/transaction/payment/" + id, body, config);
+            await Swal.fire(
+                'Payment Uploaded',
+                "Thankyou, please wait while we process your order",
+                'success'
+            );
+            await refetch();
         } catch (err) {
             console.log(err);
-            alert(err.response.data.message);
         }
     }
 

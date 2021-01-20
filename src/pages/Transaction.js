@@ -42,17 +42,21 @@ function Transaction() {
                 </thead>
                 <tbody>
                     {transactions.map((transaction, i) => 
-                        <tr>
+                        <tr key={transaction.id}>
                             <td>{i + 1}</td>
                             <td>{transaction.name}</td>
                             <td>{transaction.address}</td>
                             <td>{transaction.postCode}</td>
                             <td>Rp. {transaction.income}</td>
                             <td className="text-center"><Status status={transaction.status} /></td>
-                            <td>
+                            <td className="text-center">
                                 {transaction.status === "WAITING" ?
-                                    <ViewPayment id={transaction.id} image={transaction.attachment} />
-                                : <></>
+                                    <ViewPayment id={transaction.id} image={transaction.attachment} refetch={fetchTransactions} />
+                                : transaction.status === "COMPLETED" ?
+                                    <img src="/img/success.svg" alt="success" />
+                                : transaction.status === "CANCELED" ?
+                                    <img src="/img/cancel.svg" alt="cancel" />
+                                : <img src="/img/waiting.svg" alt="waiting" />
                                 }
                             </td>
                         </tr>

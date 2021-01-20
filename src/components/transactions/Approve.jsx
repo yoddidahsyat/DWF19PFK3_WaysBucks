@@ -1,7 +1,8 @@
 import { Button } from 'react-bootstrap';
 import { API } from '../../config/api';
+import Swal from 'sweetalert2';
 
-function Approve({id}) {
+function Approve({id, closemodal, refetch}) {
     
     const handleClick = async () => {
         
@@ -16,9 +17,14 @@ function Approve({id}) {
         };
 
         try {
-            const response = await API.patch('/transaction/' + id, body, config);
-            alert(response.data.message);
-            alert('');
+            await API.patch('/transaction/' + id, body, config);
+            await Swal.fire(
+                'Approved',
+                "The transaction's status successfully updated",
+                'success'
+            );
+            closemodal();
+            refetch();
         } catch (err) {
             console.log(err.response.data.message);
         }

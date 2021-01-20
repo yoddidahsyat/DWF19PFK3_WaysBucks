@@ -33,14 +33,13 @@ function Profile() {
         fetchUser();
     }, []);
 
-
     return (
-        loading || !user.transactions ? <Loading /> :
+        loading ? <Loading /> :
         <div className="container">
             <div className="row">
                 <div className="col-lg-5 mb-3">
                     <h5 className="text-red"><strong>My Profile</strong></h5>
-                    <div className="d-flex align-items-center">
+                    <div className="d-flex align-items-center my-3">
                         { user.avatar ? <img src={uploadURL + user.avatar} alt="profile" className="img-profile" />
                             : <img src="/img/profile/person-circle.png" alt="profile" className="img-profile" />
                         }
@@ -62,15 +61,14 @@ function Profile() {
                                     <div className="row">
                                         <div className="col-md-9">
                                             <ul className="list-group"> {/*product in transaction*/}
-                                                {transaction.transactionProduct.map( transactionProduct => 
+                                                {transaction.transactionProducts.map( transactionProduct => 
                                                     <li className="list-group-item list-group-item-danger" key={transactionProduct.id} >
                                                         <div className="d-flex align-items-center ">
                                                             <img src={uploadURL + transactionProduct.product.image} alt="product" />
                                                             <div className="ml-3 text-red">
                                                                 <h5><strong>{transactionProduct.product.name}</strong></h5>
-                                                                {/* <p><strong>Saturday, </strong>5 March 2020</p> */}
-                                                                <p><span className="text-brown">Topping : </span>{transactionProduct.transactionTopping.map(transactionTopping => transactionTopping.topping.name).join(', ')}</p>
-                                                                <p><span className="text-brown">SubTotal : </span>Rp. {transactionProduct.transactionTopping.map(transactionTopping => transactionTopping.topping.price).reduce((a, b) => a + b, transactionProduct.product.price)}</p>
+                                                                <p><span className="text-brown">Topping : </span>{transactionProduct.transactionToppings.map(transactionTopping => transactionTopping.topping.name).join(', ')}</p>
+                                                                <p><span className="text-brown">SubTotal : </span>Rp. {transactionProduct.transactionToppings.map(transactionTopping => transactionTopping.topping.price).reduce((a, b) => a + b, transactionProduct.product.price)}</p>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -86,17 +84,17 @@ function Profile() {
                                                 {transaction.status === "PENDING" ?
                                                     <div className="my-5">
                                                         <div>
-                                                            <UploadPayment id={transaction.id} />
+                                                            <UploadPayment id={transaction.id} refetch={fetchUser} />
                                                         </div>
                                                         <div className="mt-3">
-                                                            <Cancel id={transaction.id} />
+                                                            <Cancel id={transaction.id} refetch={fetchUser} />
                                                         </div>
                                                     </div>
-                                                : transaction.status === "PROCESSING" ?
+                                                : transaction.status === "PROCESSING" &&
                                                     <div className="my-3">
-                                                        <Complete id={transaction.id} />
+                                                        <Complete id={transaction.id} refetch={fetchUser} />
                                                     </div>
-                                                : <></>}
+                                                }
                                             </div>
                                         </div>
                                     </div>
