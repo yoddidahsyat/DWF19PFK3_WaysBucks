@@ -3,6 +3,7 @@ import { API } from '../config/api';
 import { Form, Button } from "react-bootstrap";
 import { useDropzone } from 'react-dropzone';
 import BoxUpload from '../components/BoxUpload';
+import Swal from 'sweetalert2';
 
 function AddTopping() {
 
@@ -54,10 +55,16 @@ function AddTopping() {
 
         try {
             const response = await API.post("/topping", body, config);
-            alert(response.data.message);
+            await Swal.fire(
+                'Success',
+                response.data.message,
+                'success');
         } catch (err) {
             console.log(err);
-            alert(err.response.data.message);
+            Swal.fire(
+                'Failed',
+                err.response.data.message,
+                'error');
         }
     }
 
