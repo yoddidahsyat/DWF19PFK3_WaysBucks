@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
-import { API, uploadURL } from '../config/api';
+import { API } from '../config/api';
 
 import ToppingCard from '../components/card/Topping';
 import Loading from '../components/Loading';

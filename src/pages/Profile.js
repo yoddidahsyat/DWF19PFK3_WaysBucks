@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { API, uploadURL } from '../config/api';
+import { API } from '../config/api';
 import Loading from '../components/Loading';
 import Cancel from '../components/transactions/Cancel';
 import Complete from '../components/transactions/Complete';

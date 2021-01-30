@@ -1,6 +1,6 @@
 import { Card } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
-import { uploadURL } from '../../config/api';
+// import { uploadURL } from '../../config/api';
 
 function ProductCard({product}) {
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { uploadURL } from '../../config/api';
+// import { uploadURL } from '../../config/api';
 import Approve from './Approve';
 import Cancel from './Cancel';
 

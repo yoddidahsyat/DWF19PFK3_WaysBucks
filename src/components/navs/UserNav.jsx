@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { useHistory } from 'react-router-dom';
 import { Nav, Dropdown } from 'react-bootstrap';
-import { uploadURL } from '../../config/api';
+// import { uploadURL } from '../../config/api';
 
 function UserHead() {
     const router = useHistory();

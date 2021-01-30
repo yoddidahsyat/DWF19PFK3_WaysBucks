@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, Button } from "react-bootstrap";
 import { useDropzone } from 'react-dropzone';
-import { API, uploadURL } from '../config/api';
+import { API } from '../config/api';
 import BoxUpload from '../components/BoxUpload';
 import { AppContext } from '../context/AppContext';
 import Swal from 'sweetalert2';

@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import { Form, Button } from 'react-bootstrap';
-import { API, uploadURL } from "../config/api";
+import { API } from "../config/api";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 

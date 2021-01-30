@@ -1,4 +1,4 @@
-import { uploadURL } from '../../config/api';
+// import { uploadURL } from '../../config/api';
 
 const ToppingCard = ({...props}) => {
     
