@@ -43,12 +43,11 @@ const reducer = (state, action) => {
                     name: action.payload.name,
                     email: action.payload.email,
                     role: action.payload.role,
-                    avatar: action.payload.avatar
+                    avatar
                 }
             }
 
         case "USER_LOADED":
-            const avatar = action.payload.avatar === "false" ? null : action.payload.avatar;
             return {
                 ...state,
                 isLogin: true,
