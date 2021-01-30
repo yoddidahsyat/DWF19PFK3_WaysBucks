@@ -112,7 +112,7 @@ const Cart = () => {
                         <li className="list-group-item" key={i}>
                             <div className="row">
                                 <div className="col-2">
-                                    <img src={ uploadURL + product.image} alt={product.name} className="img-cart" />
+                                    <img src={ product.image} alt={product.name} className="img-cart" />
                                 </div>
                                 <div className="col-8">
                                     <h5>{product.name}</h5>

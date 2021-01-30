@@ -109,7 +109,7 @@ function EditProfile() {
                     <div {...getRootProps({className: 'dropzone'})} className="text-center">
                         <input {...getInputProps()} />
                         { files.length > 0 ? thumbs
-                        : user.avatar ? <img src={uploadURL + user.avatar} alt="avatar" className="img-fluid" role="button" /> 
+                        : user.avatar ? <img src={user.avatar} alt="avatar" className="img-fluid" role="button" /> 
                         : <BoxUpload type="Profile" />
                         }
                     </div>

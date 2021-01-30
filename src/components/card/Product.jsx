@@ -13,7 +13,7 @@ function ProductCard({product}) {
 
     return (
         <Card role="button" onClick={goToProduct} className="col-md-3 my-2" border="light">
-            <Card.Img className="img-card" variant="top" src={uploadURL + image} alt={name}/>
+            <Card.Img className="img-card" variant="top" src={image} alt={name}/>
             <Card.Body className="bg-light" >
                 <Card.Title className="text-red">{name}</Card.Title>
                 <Card.Text className="text-brown">Rp. {price}</Card.Text>

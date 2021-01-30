@@ -18,7 +18,7 @@ function ViewPayment({id, image, refetch}) {
             </Button>
             <Modal show={modal} onHide={closeModal} >
                 <Modal.Body>
-                    <img src={ uploadURL + image} alt="payment" className="img-fluid" />
+                    <img src={ image} alt="payment" className="img-fluid" />
                     <h5 className="text-center my-3">Continue transaction?</h5>
                     <div className="d-flex justify-content-around" >
                         <Button variant="light" onClick={closeModal} >Back</Button>

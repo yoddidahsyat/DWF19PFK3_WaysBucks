@@ -28,7 +28,7 @@ function UserHead() {
             </Nav.Link>
             <Dropdown as={Nav.Item} className="ml-3">
                 <Dropdown.Toggle as={Nav.Link}>
-                    {state.user.avatar ? <img src={uploadURL + state.user.avatar} alt="profile" className="img-avatar" />
+                    {state.user.avatar ? <img src={state.user.avatar} alt="profile" className="img-avatar" />
                         : <img src="/img/profile/person-circle.png" alt="profile" className="img-avatar" />
                     }
                 </Dropdown.Toggle>

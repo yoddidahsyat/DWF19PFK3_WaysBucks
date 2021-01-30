@@ -40,7 +40,7 @@ function Profile() {
                 <div className="col-lg-5 mb-3">
                     <h5 className="text-red"><strong>My Profile</strong></h5>
                     <div className="d-flex align-items-center my-3">
-                        { user.avatar ? <img src={uploadURL + user.avatar} alt="profile" className="img-profile" />
+                        { user.avatar ? <img src={user.avatar} alt="profile" className="img-profile" />
                             : <img src="/img/profile/person-circle.png" alt="profile" className="img-profile" />
                         }
                         <div className="ml-3">
@@ -64,7 +64,7 @@ function Profile() {
                                                 {transaction.transactionProducts.map( transactionProduct => 
                                                     <li className="list-group-item list-group-item-danger" key={transactionProduct.id} >
                                                         <div className="d-flex align-items-center ">
-                                                            <img src={uploadURL + transactionProduct.product.image} alt="product" />
+                                                            <img src={transactionProduct.product.image} alt="product" />
                                                             <div className="ml-3 text-red">
                                                                 <h5><strong>{transactionProduct.product.name}</strong></h5>
                                                                 <p><span className="text-brown">Topping : </span>{transactionProduct.transactionToppings.map(transactionTopping => transactionTopping.topping.name).join(', ')}</p>

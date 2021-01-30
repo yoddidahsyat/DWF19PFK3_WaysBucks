@@ -9,7 +9,7 @@ const ToppingCard = ({...props}) => {
             <div className="card border-light">
                 <div className="card-body">
                     <label className="block-check">
-                        <img src={uploadURL + image} alt={name} className="img-topping" />
+                        <img src={image} alt={name} className="img-topping" />
                         <input 
                             type="checkbox"
                             id={id}

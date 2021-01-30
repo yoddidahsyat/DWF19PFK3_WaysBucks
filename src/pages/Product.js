@@ -88,7 +88,7 @@ function Product() {
             <div className="container">
                 <div className="row">
                     <div className="col-5">
-                        <img src={uploadURL + product.image} alt="product" className="img-product img-fluid" />
+                        <img src={product.image} alt="product" className="img-product img-fluid" />
                     </div>
                     <div className="col-7">
                         <h2 className="text-red"><strong>{product.name}</strong></h2>
