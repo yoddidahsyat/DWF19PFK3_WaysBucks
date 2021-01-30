@@ -33,6 +33,7 @@ const reducer = (state, action) => {
         
         case "LOGIN":
             localStorage.setItem("token", action.payload.token);
+            const avatar = action.payload.avatar === "false" ? null : action.payload.avatar;
             return {
                 ...state,
                 isLogin: true,
@@ -42,7 +43,7 @@ const reducer = (state, action) => {
                     name: action.payload.name,
                     email: action.payload.email,
                     role: action.payload.role,
-                    avatar: null
+                    avatar: action.payload.avatar
                 }
             }
 
