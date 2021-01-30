@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const baseURL = "https://waysbucks-api.herokuapp.com/api/v1";
-export const uploadURL = baseURL + "/";
+export const uploadURL = "http://res.cloudinary.com/ddocknxiq/image/";
 
 export const API = axios.create({
     baseURL
