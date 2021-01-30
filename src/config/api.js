@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const baseURL = "http://localhost:5000/api/v1";
-export const uploadURL = baseURL + "/uploads/";
+export const baseURL = "https://waysbucks-api.herokuapp.com/api/v1";
+export const uploadURL = baseURL + "/";
 
 export const API = axios.create({
     baseURL
