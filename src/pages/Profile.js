@@ -40,8 +40,8 @@ function Profile() {
                 <div className="col-lg-5 mb-3">
                     <h5 className="text-red"><strong>My Profile</strong></h5>
                     <div className="d-flex align-items-center my-3">
-                        { user.avatar ? <img src={user.avatar} alt="profile" className="img-profile" />
-                            : <img src="/img/profile/person-circle.png" alt="profile" className="img-profile" />
+                        { user.avatar === "false" ? <img src="/img/profile/person-circle.png" alt="profile" className="img-profile" />
+                            : <img src={user.avatar} alt="profile" className="img-profile" />
                         }
                         <div className="ml-3">
                             <strong className="text-brown">Full Name</strong>
